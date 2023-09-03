@@ -19,15 +19,23 @@ const thoughtSchema = new Schema({
     required: true,
     ref: 'user'
   },
-  comment: {
+  commentText: {
     type: String,
     required: true,
     ref: 'comment'
+  },
+  reactionBody: {
+    type: String,
+    required: true,
+    ref: 'reaction'
   }
 });
 
 thoughtSchema.virtual('commentCount').get(function () {
-    return this.comment.length;
+    return this.commentText.length;
+})
+thoughtSchema.virtual('reactionCount').get(function () {
+    return this.reactionBody.length;
 })
 
 const Thought = model('thought', thoughtSchema);
