@@ -18,8 +18,17 @@ const thoughtSchema = new Schema({
     type: String,
     required: true,
     ref: 'user'
+  },
+  comment: {
+    type: String,
+    required: true,
+    ref: 'comment'
   }
 });
+
+thoughtSchema.virtual('commentCount').get(function () {
+    return this.comment.length;
+})
 
 const Thought = model('thought', thoughtSchema);
 
