@@ -32,6 +32,12 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
+    thoughts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'thought'
+        }
+    ]
 })
 
 const User = model('user', userSchema);
