@@ -17,17 +17,17 @@ const commentSchema = new Schema({
     userId: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'user'
+            ref: 'User'
         }
     ],
     thoughtId: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'thought'
+            ref: 'Thought'
         }
     ]
 })
 
-const Comment = model('comment', commentSchema);
+const Comment = model('Comment', commentSchema);
 
 module.exports = Comment;

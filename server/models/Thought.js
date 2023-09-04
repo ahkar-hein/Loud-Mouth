@@ -17,13 +17,13 @@ const thoughtSchema = new Schema({
   username: {
     type: String,
     required: true,
-    ref: 'user'
+    ref: 'User'
   },
   commentText: [
     {
       type: String,
       required: true,
-      ref: 'comment'
+      ref: 'Comment'
     }
   ],
 
@@ -31,13 +31,13 @@ const thoughtSchema = new Schema({
     {
       type: String,
       required: true,
-      ref: 'reaction'
+      ref: 'Reaction'
     }
   ],
 
   topicBody: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'topic',
+    type: String,
+    ref: 'Topic',
   }
 
 });
@@ -49,6 +49,6 @@ thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactionBody.length;
 })
 
-const Thought = model('thought', thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;

@@ -35,11 +35,11 @@ const userSchema = new Schema({
     thoughts: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'thought'
+            ref: 'Thought'
         }
     ]
 })
 
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
