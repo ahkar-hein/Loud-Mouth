@@ -19,23 +19,34 @@ const thoughtSchema = new Schema({
     required: true,
     ref: 'user'
   },
-  commentText: {
-    type: String,
-    required: true,
-    ref: 'comment'
-  },
-  reactionBody: {
-    type: String,
-    required: true,
-    ref: 'reaction'
+  commentText: [
+    {
+      type: String,
+      required: true,
+      ref: 'comment'
+    }
+  ],
+
+  reactionBody: [
+    {
+      type: String,
+      required: true,
+      ref: 'reaction'
+    }
+  ],
+
+  topicBody: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'topic',
   }
+
 });
 
 thoughtSchema.virtual('commentCount').get(function () {
-    return this.commentText.length;
+  return this.commentText.length;
 })
 thoughtSchema.virtual('reactionCount').get(function () {
-    return this.reactionBody.length;
+  return this.reactionBody.length;
 })
 
 const Thought = model('thought', thoughtSchema);
