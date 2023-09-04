@@ -15,24 +15,24 @@ const reactionSchema = new Schema({
     userId: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'user'
+            ref: 'User'
         }
     ],
     thoughtId: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'thought'
+            ref: 'Thought'
         }
     ],
     commentId: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'comment'
+            ref: 'Comment'
         }
     ]
 });
 
 
-const Reaction = model('reaction', reactionSchema);
+const Reaction = model('Reaction', reactionSchema);
 
 module.exports = Reaction;

@@ -10,6 +10,6 @@ const topicSchema = new Schema({
 });
 
 
-const Topic = model('topic', topicSchema);
+const Topic = model('Topic', topicSchema);
 
 module.exports = Topic;
