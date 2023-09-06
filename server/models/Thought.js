@@ -27,13 +27,13 @@ const thoughtSchema = new Schema({
     }
   ],
 
-  reactionBody: [
-    {
-      type: String,
-      required: true,
-      ref: 'Reaction'
-    }
-  ],
+  // reactionBody: [
+  //   {
+  //     type: String,
+  //     required: true,
+  //     ref: 'Reaction'
+  //   }
+  // ],
 
   topicBody: {
     type: String,
@@ -45,9 +45,9 @@ const thoughtSchema = new Schema({
 thoughtSchema.virtual('commentCount').get(function () {
   return this.commentText.length;
 })
-thoughtSchema.virtual('reactionCount').get(function () {
-  return this.reactionBody.length;
-})
+// thoughtSchema.virtual('reactionCount').get(function () {
+//   return this.reactionBody.length;
+// })
 
 const Thought = model('Thought', thoughtSchema);
 
