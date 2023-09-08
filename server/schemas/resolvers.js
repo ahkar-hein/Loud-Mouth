@@ -61,8 +61,20 @@ const resolvers = {
         { new: true }
       );
     },
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      return Thought.create({ thoughtText, thoughtAuthor });
+    addThought: async (parent, { thoughtText, userId}) => {
+      try {
+        if (!userId) {
+          throw new Error('You need to be logged in!');
+        }
+        if (User._id !== userId) {
+          throw new Error('You can only add thoughts to your own account!');
+        }
+        const thought = await Thought.create({ thoughtText, userId });
+        console.log('Created thought:', thought);
+        return thought;
+      } catch (err) {
+        console.log(err);
+      }
     },
     updateThought: async (parent, { thoughtId, thoughtText }) => {
       return Thought.findOneAndUpdate(

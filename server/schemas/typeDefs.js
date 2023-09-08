@@ -55,7 +55,7 @@ const typeDefs = `
         addUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): User
         login(email: String!, password: String!): User
         updateUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): User
-        addThought(thoughtText: String!): Thought
+        addThought(thoughtText: String!, userId: ID!): Thought
         updateThought(thoughtText: String!): Thought
         addComment(commentText: String!): Comment
         addReaction(reactionBody: String!): Reaction
