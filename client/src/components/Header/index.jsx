@@ -126,9 +126,9 @@ const NavBar = () => {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+          
             <MailIcon />
-          </Badge>
+          
         </IconButton>
         <p>Messages</p>
       </MenuItem>
@@ -179,11 +179,9 @@ const NavBar = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button variant="outlined" color="inherit" size="small">Login</Button>
+            <Button variant="outlined" color="inherit" size="small" href="/login">Login</Button>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
                 <MailIcon />
-              </Badge>
             </IconButton>
             
             <IconButton
