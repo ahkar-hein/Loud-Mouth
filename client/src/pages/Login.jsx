@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 import Auth from '../utils/auth';
 
@@ -53,12 +56,15 @@ const Login = (props) => {
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
-                <input
+                <TextField
                   className="form-input"
-                  placeholder="Your email"
+                  required
+                  id="outlined-required"
                   name="email"
                   type="email"
+                  label="Required"
                   value={formState.email}
+                  defaultValue="Your email"
                   onChange={handleChange}
                 />
                 <input
