@@ -1,4 +1,5 @@
 const { Thought, User } = require('../models');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
   Query: {
