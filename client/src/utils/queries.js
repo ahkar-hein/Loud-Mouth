@@ -24,16 +24,9 @@ export const QUERY_THOUGHTS = gql`
       thoughtText
       createdAt
     }
-    comment {
-      commentText
-      createdAt
-    }
-    user {
-      _id
-      username
-    }
   }
 `;
+
 
 export const GET_TOPICS = gql `
   query getTopics {

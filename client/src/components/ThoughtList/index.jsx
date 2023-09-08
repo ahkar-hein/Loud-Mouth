@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 const ThoughtList = ({
   thoughts,
-  title,
-  showTitle = true,
-  showUsername = true,
+  // title,
+  // showTitle = true,
+  // showUsername = true,
 }) => {
   if (!thoughts.length) {
     return <h3>No Thoughts Yet</h3>;
@@ -12,11 +12,11 @@ const ThoughtList = ({
 
   return (
     <div>
-      {showTitle && <h3>{title}</h3>}
+      {/* {showTitle && <h3>{title}</h3>} */}
       {thoughts &&
         thoughts.map((thought) => (
           <div key={thought._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
+            {/* <h4 className="card-header bg-primary text-light p-2 m-0">
               {showUsername ? (
                 <Link
                   className="text-light"
@@ -34,7 +34,7 @@ const ThoughtList = ({
                   </span>
                 </>
               )}
-            </h4>
+            </h4> */}
             <div className="card-body bg-light p-2">
               <p>{thought.thoughtText}</p>
             </div>
