@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const GET_USER_PROFILE = gql`
+export const QUERY_USER = gql`
   query getUser($username: String!) {
     user(username: $username) {
       _id
@@ -17,7 +17,7 @@ export const GET_USER_PROFILE = gql`
   }
 `;
 
-export const GET_THOUGHTS = gql`
+export const QUERY_THOUGHTS = gql`
   query getThoughts {
     thoughts {
       _id
@@ -50,7 +50,7 @@ export const GET_TOPICS = gql `
   }
 `
 
-export const GET_SINGLE_THOUGHT = gql`
+export const QUERY_SINGLE_THOUGHT = gql`
   query getSingleThought($thoughtId: ID!) {
     thought(thoughtId: $thoughtId) {
       _id
@@ -66,8 +66,8 @@ export const GET_SINGLE_THOUGHT = gql`
   }
 `;
 
-export const GET_ME = gql`
-  query getMe {
+export const QUERY_ME = gql`
+  query me {
     me {
       _id
       username
