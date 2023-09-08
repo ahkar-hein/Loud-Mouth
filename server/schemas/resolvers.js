@@ -1,4 +1,5 @@
-const { Thought } = require('../models');
+const { Thought, User } = require('../models');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
   Query: {
@@ -24,16 +25,30 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      return User.create({ username, email, password });
+    addUser: async (parent, { firstname, lastname, username, email, password }) => {
+      try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({
+          firstname,
+          lastname,
+          username,
+          email,
+          // store hashed password
+          password: hashedPassword,
+        });
+        await user.save();
+        return user;
+      } catch (err) {
+        throw new Error('Something went wrong!');
+      }
     },
     login: async (parent, { email, password }) => {
       const User = await User.findOne({ email });
       if (!User) {
         throw new AuthenticationError('Incorrect credentials');
       }
-      const correctPw = await User.isCorrectPassword(password);
-      if (!correctPw) {
+      const passwordMatch = await bcrypt.compare(password, User.password);
+      if (!passwordMatch) {
         throw new AuthenticationError('Incorrect credentials');
       }
       const token = signToken(User);
