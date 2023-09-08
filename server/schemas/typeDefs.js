@@ -22,7 +22,7 @@ const typeDefs = `
         _id: ID!
         commentText: String
         createdAt: String
-        userId: [user]
+        userId: [User]
         thoughtId: [Thought]
     }
 
@@ -30,7 +30,7 @@ const typeDefs = `
         _id: ID!
         reactionBody: String
         createdAt: String
-        userId: [user]
+        userId: [User]
         thoughtId: [Thought]
         commentId: [Comment]
     }
