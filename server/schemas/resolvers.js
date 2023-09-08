@@ -46,8 +46,8 @@ const resolvers = {
       if (!User) {
         throw new AuthenticationError('Incorrect credentials');
       }
-      const correctPw = await User.isCorrectPassword(password);
-      if (!correctPw) {
+      const passwordMatch = await bcrypt.compare(password, User.password);
+      if (!passwordMatch) {
         throw new AuthenticationError('Incorrect credentials');
       }
       const token = signToken(User);
