@@ -43,6 +43,8 @@ const typeDefs = `
 
     type Query {
         user(userId: ID!): User
+        users: [User]
+        me(userId: ID!): User 
         thoughts: [Thought]
         thought(thoughtId: ID!): Thought
         topics: [Topic]
@@ -51,7 +53,10 @@ const typeDefs = `
 
     type Mutation {
         addUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): User
+        login(email: String!, password: String!): User
+        updateUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): User
         addThought(thoughtText: String!): Thought
+        updateThought(thoughtText: String!): Thought
         addComment(commentText: String!): Comment
         addReaction(reactionBody: String!): Reaction
         removeThought(thoughtId: ID!): Thought
