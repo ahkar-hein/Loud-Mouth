@@ -11,6 +11,8 @@ const Signup = () => {
     username: '',
     email: '',
     password: '',
+    firstname: '',
+    lastname: ''
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -34,7 +36,7 @@ const Signup = () => {
 
       Auth.login(data.addUser.token);
     } catch (e) {
-      console.error(e);
+      console.log(e);
     }
   };
 
@@ -54,9 +56,25 @@ const Signup = () => {
                 <input
                   className="form-input"
                   placeholder="Your username"
+                  name="firstname"
+                  type="text"
+                  value={formState.firstname}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="Your username"
+                  name="lastname"
+                  type="text"
+                  value={formState.lastname}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="Your username"
                   name="username"
                   type="text"
-                  value={formState.name}
+                  value={formState.username}
                   onChange={handleChange}
                 />
                 <input
