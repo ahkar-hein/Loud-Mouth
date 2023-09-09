@@ -28,6 +28,7 @@ query GET_USERNAME_BY_ID($userId: ID!) {
 export const QUERY_THOUGHTS = gql`
 query getThoughts {
   thoughts {
+    _id
     thoughtText
     user {
       _id
@@ -57,11 +58,16 @@ export const QUERY_SINGLE_THOUGHT = gql`
       _id
       thoughtText
       createdAt
+      user {
+        _id
+      }
       comments {
         _id
         commentText
-        commentAuthor
         createdAt
+        userId {
+          _id
+        }
       }
     }
   }

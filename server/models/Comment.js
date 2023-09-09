@@ -20,12 +20,6 @@ const commentSchema = new Schema({
             ref: 'User'
         }
     ],
-    thoughtId: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Thought'
-        }
-    ]
 })
 
 const Comment = model('Comment', commentSchema);
