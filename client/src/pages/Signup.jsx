@@ -55,55 +55,71 @@ const Signup = () => {
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
+              <Box
+                component="form"
+                sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" }}}
+                onSubmit={handleFormSubmit}>
+                <TextField
                   className="form-input"
+                  required
+                  id="outlined-required"
                   placeholder="First name"
                   name="firstname"
                   type="text"
                   value={formState.firstname}
                   onChange={handleChange}
                 />
-                <input
+                <TextField
                   className="form-input"
+                  required
+                  id="outlined-required"
                   placeholder="Last name"
                   name="lastname"
                   type="text"
                   value={formState.lastname}
                   onChange={handleChange}
                 />
-                <input
+                <TextField
                   className="form-input"
+                  required
+                  id="outlined-required"
                   placeholder="Your username"
                   name="username"
                   type="text"
                   value={formState.username}
                   onChange={handleChange}
                 />
-                <input
+                <TextField
                   className="form-input"
+                  required
+                  id="outlined-required"
                   placeholder="Your email"
                   name="email"
                   type="email"
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
+                <TextField
                   className="form-input"
-                  placeholder="******"
+                  required
+                  id="outlined-required"
+                  placeholder="Your password"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
+                <Button
+                    size="large"
+                    style={{ marginTop: "8px", height: "54px" }}
+                    variant="outlined"
+                    className="btn btn-block btn-primary"
+                    onClick={handleFormSubmit}
+                    type="submit"
+                  >
+                    Submit
+                  </Button>
+              </Box>
             )}
 
             {error && (
