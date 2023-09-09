@@ -1,42 +1,27 @@
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { GET_USERNAME_BY_ID } from '../../utils/queries';
 
 const ThoughtList = ({
   thoughts,
-  // title,
-  // showTitle = true,
-  // showUsername = true,
+  title,
+  showTitle = true,
+  showUsername = true,
 }) => {
   if (!thoughts.length) {
     return <h3>No Thoughts Yet</h3>;
   }
-
   return (
     <div>
-      {/* {showTitle && <h3>{title}</h3>} */}
+      {showTitle && <h3>{title}</h3>}
       {thoughts &&
         thoughts.map((thought) => (
           <div key={thought._id} className="card mb-3">
-            {/* <h4 className="card-header bg-primary text-light p-2 m-0">
-              {showUsername ? (
-                <Link
-                  className="text-light"
-                  to={`/profiles/${thought.thoughtAuthor}`}
-                >
-                  {thought.thoughtAuthor} <br />
-                  <span style={{ fontSize: '1rem' }}>
-                    had this thought on {thought.createdAt}
-                  </span>
-                </Link>
-              ) : (
-                <>
-                  <span style={{ fontSize: '1rem' }}>
-                    You had this thought on {thought.createdAt}
-                  </span>
-                </>
-              )}
-            </h4> */}
             <div className="card-body bg-light p-2">
               <p>{thought.thoughtText}</p>
+              {showUsername && (
+                <UsernameDisplay userId={thought.user._id} />
+              )}
             </div>
             <Link
               className="btn btn-primary btn-block btn-squared"
@@ -50,4 +35,22 @@ const ThoughtList = ({
   );
 };
 
+const UsernameDisplay = ({ userId }) => {
+  const { loading, error, data } = useQuery(GET_USERNAME_BY_ID, {
+    variables: { userId },
+  });
+
+  if (loading) {
+    return <p>Loading username...</p>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <p>Error fetching username.</p>;
+  }
+
+  return <p>This thought created by {data.user.username}</p>;
+};
+
 export default ThoughtList;
+

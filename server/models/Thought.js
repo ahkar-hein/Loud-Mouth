@@ -14,8 +14,8 @@ const thoughtSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-  username: {
-    type: String,
+  user: {
+    type: Schema.Types.ObjectId,
     required: true,
     ref: 'User'
   },
