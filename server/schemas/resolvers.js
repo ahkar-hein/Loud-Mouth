@@ -6,8 +6,8 @@ const resolvers = {
     users: async () => {
       return User.find().populate('thoughts');
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+    user: async (parent, { userId }) => {
+      return User.findOne({ _id: userId }).populate('thoughts');
     },
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -61,8 +61,20 @@ const resolvers = {
         { new: true }
       );
     },
-    addThought: async (parent, { thoughtText, thoughtAuthor }) => {
-      return Thought.create({ thoughtText, thoughtAuthor });
+    addThought: async (parent, { thoughtText, userId}) => {
+      try {
+        if (!userId) {
+          throw new Error('You need to be logged in!');
+        }
+        if (User._id !== userId) {
+          throw new Error('You can only add thoughts to your own account!');
+        }
+        const thought = await Thought.create({ thoughtText, userId });
+        console.log('Created thought:', thought);
+        return thought;
+      } catch (err) {
+        console.log(err);
+      }
     },
     updateThought: async (parent, { thoughtId, thoughtText }) => {
       return Thought.findOneAndUpdate(

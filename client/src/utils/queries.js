@@ -17,25 +17,26 @@ export const QUERY_USER = gql`
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
-      _id
-      thoughtText
-      createdAt
-    }
-    comment {
-      commentText
-      createdAt
-    }
-    user {
-      _id
-      username
-    }
+export const GET_USERNAME_BY_ID = gql`
+query GET_USERNAME_BY_ID($userId: ID!) {
+  user(userId: $userId) {
+    username
   }
+}
 `;
 
-export const GET_TOPICS = gql `
+export const QUERY_THOUGHTS = gql`
+query getThoughts {
+  thoughts {
+    thoughtText
+    user {
+      _id
+    }
+  }
+}
+`;
+
+export const GET_TOPICS = gql`
   query getTopics {
     topic {
       _id
