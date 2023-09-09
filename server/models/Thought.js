@@ -19,9 +19,9 @@ const thoughtSchema = new Schema({
     required: true,
     ref: 'User'
   },
-  commentText: [
+  comments: [
     {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
       ref: 'Comment'
     }
