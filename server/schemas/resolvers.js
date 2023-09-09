@@ -1,6 +1,6 @@
 const { Thought, User } = require('../models');
 const bcrypt = require('bcrypt');
-
+const { signToken, AuthenticationError } = require ('../utils/auth')
 const resolvers = {
   Query: {
     users: async () => {
@@ -37,22 +37,24 @@ const resolvers = {
           password: hashedPassword,
         });
         await user.save();
-        return user;
+        const token = signToken(user);
+        return {token, user};
       } catch (err) {
         throw new Error('Something went wrong!');
       }
     },
     login: async (parent, { email, password }) => {
-      const User = await User.findOne({ email });
-      if (!User) {
+      const user = await User.findOne({ email });
+      console.log(user)
+      if (!user) {
         throw new AuthenticationError('Incorrect credentials');
       }
-      const passwordMatch = await bcrypt.compare(password, User.password);
+      const passwordMatch = await bcrypt.compare(password, user.password);
       if (!passwordMatch) {
         throw new AuthenticationError('Incorrect credentials');
       }
-      const token = signToken(User);
-      return { token, User };
+      const token = signToken(user);
+      return { token, user };
     },
     updateUser: async (parent, { username, email, password }) => {
       return User.findOneAndUpdate(
