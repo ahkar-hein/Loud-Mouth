@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 import Auth from '../utils/auth';
 
@@ -55,7 +58,7 @@ const Signup = () => {
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
-                  placeholder="Your username"
+                  placeholder="First name"
                   name="firstname"
                   type="text"
                   value={formState.firstname}
@@ -63,7 +66,7 @@ const Signup = () => {
                 />
                 <input
                   className="form-input"
-                  placeholder="Your username"
+                  placeholder="Last name"
                   name="lastname"
                   type="text"
                   value={formState.lastname}
