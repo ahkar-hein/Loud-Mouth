@@ -13,7 +13,7 @@ const typeDefs = `
         thoughtText: String
         createdAt: String
         user: User
-        commentText: [Comment]
+        comments: [Comment]
         reactionBody: [Reaction]
         topicBody: [Topic]
     }
@@ -47,6 +47,7 @@ const typeDefs = `
         me(userId: ID!): User 
         thoughts: [Thought]
         thought(thoughtId: ID!): Thought
+        comments: [Comment]
         topics: [Topic]
         topic(topicId: ID!): Topic
     }

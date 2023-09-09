@@ -1,4 +1,4 @@
-const { Thought, User } = require('../models');
+const { Thought, User, Comment } = require('../models');
 const bcrypt = require('bcrypt');
 
 const resolvers = {
@@ -9,12 +9,14 @@ const resolvers = {
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId }).populate('thoughts');
     },
-    thoughts: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+    thoughts: async () => {
+      return Thought.find().populate('comments');
     },
     thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+      return Thought.findOne({ _id: thoughtId }).populate('comments');
+    },
+    comments: async () => {
+      return Comment.find();
     },
     me: async (parent, args, context) => {
       if (context.user) {

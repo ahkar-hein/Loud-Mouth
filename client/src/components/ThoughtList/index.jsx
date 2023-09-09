@@ -8,29 +8,29 @@ const ThoughtList = ({
   showTitle = true,
   showUsername = true,
 }) => {
-  if (!thoughts.length) {
+  if (!thoughts || thoughts.length === 0) {
     return <h3>No Thoughts Yet</h3>;
   }
+  
   return (
     <div>
       {showTitle && <h3>{title}</h3>}
-      {thoughts &&
-        thoughts.map((thought) => (
-          <div key={thought._id} className="card mb-3">
-            <div className="card-body bg-light p-2">
-              <p>{thought.thoughtText}</p>
-              {showUsername && (
-                <UsernameDisplay userId={thought.user._id} />
-              )}
-            </div>
-            <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/thoughts/${thought._id}`}
-            >
-              Join the discussion on this thought.
-            </Link>
+      {thoughts.map((thought) => (
+        <div key={thought._id} className="card mb-3">
+          <div className="card-body bg-light p-2">
+            <p>{thought.thoughtText}</p>
+            {showUsername && thought.user && (
+              <UsernameDisplay userId={thought.user._id} />
+            )}
           </div>
-        ))}
+          <Link
+            className="btn btn-primary btn-block btn-squared"
+            to={`/thoughts/${thought._id}`}
+          >
+            Join the discussion on this thought.
+          </Link>
+        </div>
+      ))}
     </div>
   );
 };
@@ -53,4 +53,3 @@ const UsernameDisplay = ({ userId }) => {
 };
 
 export default ThoughtList;
-
