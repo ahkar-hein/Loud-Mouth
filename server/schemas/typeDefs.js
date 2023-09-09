@@ -12,7 +12,7 @@ const typeDefs = `
         _id: ID!
         thoughtText: String
         createdAt: String
-        username: User
+        user: User
         commentText: [Comment]
         reactionBody: [Reaction]
         topicBody: [Topic]
@@ -42,8 +42,8 @@ const typeDefs = `
     }
 
     type Query {
+        users: [User]!
         user(userId: ID!): User
-        users: [User]
         me(userId: ID!): User 
         thoughts: [Thought]
         thought(thoughtId: ID!): Thought

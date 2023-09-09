@@ -17,6 +17,7 @@
     "concurrently": "^8.2.0"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1"
+    "bcrypt": "^5.1.1",
+    "fs": "^0.0.1-security"
   }
 }
