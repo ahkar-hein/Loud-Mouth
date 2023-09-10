@@ -18,6 +18,7 @@ const ThoughtList = ({
       {thoughts.map((thought) => (
         <div key={thought._id} className="card mb-3">
           <div className="card-body bg-light p-2">
+            <image><img src={thought.media} alt=""/></image>
             <p>{thought.thoughtText}</p>
             {showUsername && thought.user && thought.user._id && (
               <UsernameDisplay userId={thought.user._id} />

@@ -13,6 +13,7 @@ const typeDefs = `
         _id: ID!
         thoughtText: String
         createdAt: String
+        media: String
         user: User
         comments: [Comment]
         reactionBody: [Reaction]
@@ -62,7 +63,7 @@ const typeDefs = `
         addUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         updateUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): User
-        addThought(thoughtText: String!, userId: ID!, topicId: ID!): Thought
+        addThought(thoughtText: String!, media: String, userId: ID!, topicId: ID!): Thought
         updateThought(thoughtText: String!): Thought
         addComment(commentText: String!): Comment
         addReaction(reactionBody: String!): Reaction

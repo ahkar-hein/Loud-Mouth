@@ -30,6 +30,7 @@ query getThoughts {
   thoughts {
     _id
     thoughtText
+    media
     user {
       _id
     }
@@ -51,6 +52,7 @@ export const QUERY_SINGLE_THOUGHT = gql`
     thought(thoughtId: $thoughtId) {
       _id
       thoughtText
+      media
       createdAt
       user {
         _id

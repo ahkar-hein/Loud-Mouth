@@ -5,11 +5,14 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_THOUGHT } from '../../utils/mutations';
 import { QUERY_THOUGHTS, QUERY_ME, QUERY_TOPICS } from '../../utils/queries';
 
+import ImageUpload from '../mediaUpload/mediaUpload';
 import Auth from '../../utils/auth';
 
 const ThoughtForm = () => {
   const [thoughtText, setThoughtText] = useState('');
   const [topicId, setTopicId] = useState('');
+  const [image, setImage] = useState(null);
+  console.log(image)
   const [characterCount, setCharacterCount] = useState(0);
   console.log(topicId);
   const [addThought, { error }] = useMutation(ADD_THOUGHT, {
@@ -33,12 +36,15 @@ const ThoughtForm = () => {
       const { data } = await addThought({
         variables: {
           thoughtText,
+          media: image,
           userId: Auth.getProfile().data._id,
           topicId,
         },
       });
 
       setThoughtText('');
+      setImage(null);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -54,7 +60,9 @@ const ThoughtForm = () => {
       setTopicId(value);
     }
   };
-
+  const handleImageUpload = (imageUrl) => {
+    setImage(imageUrl);
+  };
   return (
     <div>
       {Auth.loggedIn() ? (
@@ -97,6 +105,7 @@ const ThoughtForm = () => {
                   ))
                 )}
               </select>
+              <ImageUpload onImageUpload={handleImageUpload} />
             </div>
 
             <div className="col-12 col-lg-3">
