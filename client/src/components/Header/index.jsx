@@ -20,6 +20,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import LogoutButton from '../LogoutButton'
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -179,7 +181,10 @@ const NavBar = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button variant="outlined" color="inherit" size="small" href="/login">Login</Button>
+            {Auth.loggedIn() ? (
+              <LogoutButton />
+              ) : (
+              <Button variant="outlined" color="inherit" size="small" href="/login">Log in</Button>)}
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                 <MailIcon />
             </IconButton>

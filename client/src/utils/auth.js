@@ -33,8 +33,10 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('id_token');
-    window.location.reload();
+    console.log(localStorage)
+    localStorage.removeItem("id_token");
+    setTimeout(window.location.reload(), 50)
+    //window.location.reload();
   }
 }
 

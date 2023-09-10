@@ -40,7 +40,7 @@ function App() {
           <Outlet />
         </div>
         <Footer />
-        <LogoutButton />
+        
       </div>
     </ApolloProvider>
   );
