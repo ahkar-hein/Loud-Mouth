@@ -7,7 +7,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { Outlet } from 'react-router-dom';
-
+import './App.css';
 import Navbar from './components/Header';
 import Footer from './components/Footer';
 import LogoutButton from './components/LogoutButton';
@@ -40,7 +40,7 @@ function App() {
           <Outlet />
         </div>
         <Footer />
-        <LogoutButton />
+        
       </div>
     </ApolloProvider>
   );
