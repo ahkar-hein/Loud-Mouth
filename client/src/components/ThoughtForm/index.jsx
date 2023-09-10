@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 
@@ -9,11 +9,11 @@ import Auth from '../../utils/auth';
 
 const ThoughtForm = () => {
   const [thoughtText, setThoughtText] = useState('');
-  const [topic, setTopic] = useState('');
+  const [topicId, setTopicId] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-
+  console.log(topicId);
   const [addThought, { error }] = useMutation(ADD_THOUGHT, {
-    refetchQueries: [QUERY_THOUGHTS, 'getThoughts', QUERY_ME, 'me'],
+    refetchQueries: [QUERY_THOUGHTS, QUERY_ME],
   });
 
   const { loading, data } = useQuery(QUERY_TOPICS);
@@ -21,7 +21,7 @@ const ThoughtForm = () => {
   useEffect(() => {
     if (data) {
       if (data.topics.length > 0) {
-        setTopic(data.topics[0]._id);
+        setTopicId(data.topics[0]._id);
       }
     }
   }, [data]);
@@ -33,8 +33,8 @@ const ThoughtForm = () => {
       const { data } = await addThought({
         variables: {
           thoughtText,
-          thoughtAuthor: Auth.getProfile().data.username,
-          topic, 
+          userId: Auth.getProfile().data._id,
+          topicId,
         },
       });
 
@@ -50,9 +50,8 @@ const ThoughtForm = () => {
     if (name === 'thoughtText' && value.length <= 280) {
       setThoughtText(value);
       setCharacterCount(value.length);
-    } else if (name === 'topic') {
-      // Update the selected topic
-      setTopic(value);
+    } else if (name === 'topicId') {
+      setTopicId(value);
     }
   };
 
@@ -81,11 +80,13 @@ const ThoughtForm = () => {
                 onChange={handleChange}
               ></textarea>
               <select
-                name="topic"
-                value={topic}
+                name="topicId"
+                value={topicId}
                 onChange={handleChange}
                 className="form-input w-100"
+                required
               >
+                <option value="">Choose Topic</option>
                 {loading ? (
                   <option>Loading topics...</option>
                 ) : (

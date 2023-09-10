@@ -40,6 +40,7 @@ query getThoughts {
 export const QUERY_TOPICS = gql`
 query Topics {
   topics {
+    _id
     topicBody
   }
 }

@@ -80,7 +80,7 @@ const resolvers = {
         const thought = await Thought.create({
           thoughtText,
           user: userId, 
-          topic: topicId, 
+          topics: topicId, 
         });
     
         console.log('Created thought:', thought);
