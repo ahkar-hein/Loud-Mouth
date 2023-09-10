@@ -1,39 +1,5 @@
-// const db = require('../config/connection');
-// const { User, Thought, Comment, Topic } = require('../models');
-// const userSeeds = require('./userSeeds.json');
-// const thoughtSeeds = require('./thoughtSeeds.json');
-// const commentSeeds = require('./commentSeeds.json');
-// const topicSeeds = require('./topicSeeds.json');
-
-// db.once('open', async () => {
-//   try {
-//     await User.deleteMany({});
-//     await Thought.deleteMany({});
-//     await Comment.deleteMany({});
-//     await Topic.deleteMany({});
-
-//     await User.create(userSeeds);
-
-//     await Comment.create(commentSeeds);
-
-//     await Topic.create(topicSeeds);
-
-//     await Thought.create(thoughtSeeds);
-
-//     console.log('Database seeded successfully');
-//   } catch (err) {
-//     console.error(err);
-//     process.exit(1);
-//   } finally {
-//     db.close();
-//   }
-
-//   console.log('All done!');
-//   process.exit(0);
-// });
-/////////////////////////////////////////////////////////////
 const connection = require('../config/connection');
-const { User, Thought, Comment } = require('../models');
+const { User, Thought, Comment, Topic } = require('../models');
 
 connection.on('error', (err) => console.error(err));
 
@@ -87,7 +53,41 @@ connection.once('open', async () => {
         },
       ]);
 
-      console.log('Seed data inserted:', users, comments, thoughts);
+      const topics = await Topic.create([
+        {
+          topicBody: 'Food'
+        },
+        {
+          topicBody: 'Travel'
+        },
+        {
+          topicBody: 'Gaming'
+        },
+        {
+          topicBody: 'Sport'
+        },
+        {
+          topicBody: 'Business'
+        },
+        {
+          topicBody: 'Art'
+        },
+        {
+          topicBody: 'Law'
+        },
+        {
+          topicBody: 'Movie'
+        },
+        {
+          topicBody: 'Music'
+        },
+        {
+          topicBody: 'Programming'
+        },
+
+      ])
+
+      console.log('Seed data inserted:', users, comments, thoughts, topics);
     } catch (err) {
       console.error('Seed error:', err);
     } finally {

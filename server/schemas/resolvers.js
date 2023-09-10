@@ -1,4 +1,4 @@
-const { Thought, User, Comment } = require('../models');
+const { Thought, User, Comment, Topic } = require('../models');
 const bcrypt = require('bcrypt');
 const { signToken, AuthenticationError } = require ('../utils/auth')
 const resolvers = {
@@ -17,6 +17,9 @@ const resolvers = {
     },
     comments: async () => {
       return Comment.find();
+    },
+    topics: async () => {
+      return Topic.find();
     },
     me: async (parent, args, context) => {
       if (context.user) {
