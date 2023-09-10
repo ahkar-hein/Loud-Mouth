@@ -11,7 +11,7 @@ connection.once('open', async () => {
       await User.deleteMany({});
       await Thought.deleteMany({});
       await Comment.deleteMany({});
-      // await Topic.deleteMany({});
+      await Topic.deleteMany({});
 
       const users = await User.create([
         { firstname: "John", lastname: "Doe", username: 'johndoe', email: 'john@example.com', password: 'password12345' },

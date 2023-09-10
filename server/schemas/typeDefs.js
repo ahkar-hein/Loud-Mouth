@@ -16,7 +16,7 @@ const typeDefs = `
         user: User
         comments: [Comment]
         reactionBody: [Reaction]
-        topicBody: [Topic]
+        topics: Topic
     }
 
     type Comment {
@@ -62,7 +62,7 @@ const typeDefs = `
         addUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
         updateUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): User
-        addThought(thoughtText: String!, userId: ID!): Thought
+        addThought(thoughtText: String!, userId: ID!, topicId: ID!): Thought
         updateThought(thoughtText: String!): Thought
         addComment(commentText: String!): Comment
         addReaction(reactionBody: String!): Reaction

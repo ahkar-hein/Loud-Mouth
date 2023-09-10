@@ -37,19 +37,12 @@ query getThoughts {
 }
 `;
 
-export const GET_TOPICS = gql`
-  query getTopics {
-    topic {
-      _id
-      topicBody
-      createdAt
-    }
-    thoughts {
-      _id
-      thoughtText
-      createdAt
-    }
+export const QUERY_TOPICS = gql`
+query Topics {
+  topics {
+    topicBody
   }
+}
 `
 
 export const QUERY_SINGLE_THOUGHT = gql`
