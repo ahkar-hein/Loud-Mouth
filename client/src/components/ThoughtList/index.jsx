@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_USERNAME_BY_ID } from '../../utils/queries';
-
+import ShutupButton from '../ShutupButton';
 const ThoughtList = ({
   thoughts,
   title,
@@ -23,6 +23,7 @@ const ThoughtList = ({
               <UsernameDisplay userId={thought.user._id} />
             )}
           </div>
+          <ShutupButton thoughtId={thought._id} />
           <Link
             className="btn btn-primary btn-block btn-squared"
             to={`/thoughts/${thought._id}`}
