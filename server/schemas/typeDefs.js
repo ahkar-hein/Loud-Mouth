@@ -5,6 +5,7 @@ const typeDefs = `
         lastname: String
         username: String!
         email: String!
+        password: String!
         thoughts: [Thought]
     }
 
