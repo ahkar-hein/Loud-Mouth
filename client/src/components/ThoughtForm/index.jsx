@@ -1,26 +1,30 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 
 import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { QUERY_THOUGHTS, QUERY_ME, QUERY_TOPICS } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
 const ThoughtForm = () => {
   const [thoughtText, setThoughtText] = useState('');
-
+  const [topicId, setTopicId] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
-
-  const [addThought, { error }] = useMutation
-  (ADD_THOUGHT, {
-    refetchQueries: [
-      QUERY_THOUGHTS,
-      'getThoughts',
-      QUERY_ME,
-      'me'
-    ]
+  console.log(topicId);
+  const [addThought, { error }] = useMutation(ADD_THOUGHT, {
+    refetchQueries: [QUERY_THOUGHTS, QUERY_ME],
   });
+
+  const { loading, data } = useQuery(QUERY_TOPICS);
+
+  useEffect(() => {
+    if (data) {
+      if (data.topics.length > 0) {
+        setTopicId(data.topics[0]._id);
+      }
+    }
+  }, [data]);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -29,7 +33,8 @@ const ThoughtForm = () => {
       const { data } = await addThought({
         variables: {
           thoughtText,
-          thoughtAuthor: Auth.getProfile().data.username,
+          userId: Auth.getProfile().data._id,
+          topicId,
         },
       });
 
@@ -45,13 +50,13 @@ const ThoughtForm = () => {
     if (name === 'thoughtText' && value.length <= 280) {
       setThoughtText(value);
       setCharacterCount(value.length);
+    } else if (name === 'topicId') {
+      setTopicId(value);
     }
   };
 
   return (
     <div>
-      
-
       {Auth.loggedIn() ? (
         <>
           <p
@@ -74,6 +79,24 @@ const ThoughtForm = () => {
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
+              <select
+                name="topicId"
+                value={topicId}
+                onChange={handleChange}
+                className="form-input w-100"
+                required
+              >
+                <option value="">Choose Topic</option>
+                {loading ? (
+                  <option>Loading topics...</option>
+                ) : (
+                  data.topics.map((topic) => (
+                    <option key={topic._id} value={topic._id}>
+                      {topic.topicBody}
+                    </option>
+                  ))
+                )}
+              </select>
             </div>
 
             <div className="col-12 col-lg-3">

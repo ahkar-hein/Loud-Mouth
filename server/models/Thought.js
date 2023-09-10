@@ -22,7 +22,6 @@ const thoughtSchema = new Schema({
   comments: [
     {
       type: Schema.Types.ObjectId,
-      required: true,
       ref: 'Comment'
     }
   ],
@@ -35,8 +34,8 @@ const thoughtSchema = new Schema({
   //   }
   // ],
 
-  topicBody: {
-    type: String,
+  topics: {
+    type: Schema.Types.ObjectId,
     ref: 'Topic',
   }
 

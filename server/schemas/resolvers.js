@@ -68,21 +68,29 @@ const resolvers = {
         { new: true }
       );
     },
-    addThought: async (parent, { thoughtText, userId}) => {
+    addThought: async (parent, { thoughtText, userId, topicId }) => {
       try {
         if (!userId) {
           throw new Error('You need to be logged in!');
         }
-        if (User._id !== userId) {
-          throw new Error('You can only add thoughts to your own account!');
+        if (!topicId) {
+          throw new Error('You need to choose one topic!');
         }
-        const thought = await Thought.create({ thoughtText, userId });
+    
+        const thought = await Thought.create({
+          thoughtText,
+          user: userId, 
+          topics: topicId, 
+        });
+    
         console.log('Created thought:', thought);
         return thought;
       } catch (err) {
         console.log(err);
+        throw new Error('Something went wrong while creating the thought.');
       }
     },
+    
     updateThought: async (parent, { thoughtId, thoughtText }) => {
       return Thought.findOneAndUpdate(
         { _id: thoughtId },

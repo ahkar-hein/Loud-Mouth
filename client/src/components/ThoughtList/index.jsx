@@ -19,7 +19,7 @@ const ThoughtList = ({
         <div key={thought._id} className="card mb-3">
           <div className="card-body bg-light p-2">
             <p>{thought.thoughtText}</p>
-            {showUsername && thought.user && (
+            {showUsername && thought.user && thought.user._id && (
               <UsernameDisplay userId={thought.user._id} />
             )}
           </div>
@@ -50,7 +50,10 @@ const UsernameDisplay = ({ userId }) => {
     return <p>Error fetching username.</p>;
   }
 
-  return <p>This thought created by {data.user.username}</p>;
+  if (data.user && data.user.username) {
+    return <p>This thought created by {data.user.username}</p>;
+  }
+
 };
 
 export default ThoughtList;
