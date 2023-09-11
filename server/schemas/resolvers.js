@@ -83,6 +83,12 @@ const resolvers = {
           user: userId, 
           topics: topicId, 
         });
+
+        await User.findOneAndUpdate(
+          {_id: userId},
+          {$push: {thoughts: thought._id}},
+          {new: true}
+        )
     
         console.log('Created thought:', thought);
         return thought;
