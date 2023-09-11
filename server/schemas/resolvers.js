@@ -99,18 +99,25 @@ const resolvers = {
         { new: true, runValidators: true }
       );
     },
-    addComment: async (parent, { thoughtId, commentText }) => {
-      return Thought.findOneAndUpdate(
-        { _id: thoughtId },
-        {
-          $addToSet: { comments: { commentText } },
-        },
-        {
-          new: true,
-          runValidators: true,
+      addComment: async (parent, { commentText, userId, thoughtId }) => {
+        try {
+          const newComment = await Comment.create({
+            commentText: commentText,
+            userId: userId,
+            thoughtId: thoughtId,
+          });
+  
+          await Thought.findOneAndUpdate(
+            { _id: thoughtId },
+            { $push: { comments: newComment._id } },
+            { new: true }
+          );
+  
+          return newComment;
+        } catch (error) {
+          throw new Error('Failed to create a new comment');
         }
-      );
-    },
+      },
     removeThought: async (parent, { thoughtId }, context) => {
       if (context.user) {
         const thought = await Thought.findOneAndDelete({

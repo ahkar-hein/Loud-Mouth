@@ -18,13 +18,14 @@ const CommentForm = ({ thoughtId }) => {
     try {
       const { data } = await addComment({
         variables: {
-          thoughtId,
-          commentText,
-          commentAuthor: Auth.getProfile().data.username,
+          commentText: commentText,
+          userId: Auth.getProfile().data._id,
+          thoughtId: thoughtId
         },
       });
 
       setCommentText('');
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }

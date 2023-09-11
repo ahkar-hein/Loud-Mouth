@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import CommentList from '../components/CommentList';
 import CommentForm from '../components/CommentForm';
 
-import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
+import { QUERY_SINGLE_THOUGHT, GET_USERNAME_BY_ID } from '../utils/queries';
 
 const SingleThought = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
@@ -24,7 +24,9 @@ const SingleThought = () => {
   return (
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
-        {thought.thoughtAuthor} <br />
+      {thought.user && thought.user._id && (
+              <UsernameDisplay userId={thought.user._id} />
+            )} <br />
         <span style={{ fontSize: '1rem' }}>
           had this thought on {thought.createdAt}
         </span>
@@ -39,7 +41,7 @@ const SingleThought = () => {
             lineHeight: '1.5',
           }}
         >
-          <img src={thought.media} alt="" srcset="" />
+          <img src={thought.media} alt="" />
           <br />
           {thought.thoughtText}
         </blockquote>
@@ -55,4 +57,23 @@ const SingleThought = () => {
   );
 };
 
+const UsernameDisplay = ({ userId }) => {
+  const { loading, error, data } = useQuery(GET_USERNAME_BY_ID, {
+    variables: { userId },
+  });
+
+  if (loading) {
+    return <p>Loading username...</p>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <p>Error fetching username.</p>;
+  }
+
+  if (data.user && data.user.username) {
+    return <p>{data.user.username}</p>;
+  }
+
+};
 export default SingleThought;
