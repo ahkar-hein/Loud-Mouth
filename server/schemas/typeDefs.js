@@ -16,27 +16,18 @@ const typeDefs = `
         media: String
         user: User
         comments: [Comment]
-        reactionBody: [Reaction]
         topics: Topic
+        commentCount: Int
     }
 
     type Comment {
         _id: ID!
         commentText: String
         createdAt: String
-        userId: [User]
-        thoughtId: [Thought]
+        userId: [User]!
+        thoughtId: [Thought]!
     }
-
-    type Reaction {
-        _id: ID!
-        reactionBody: String
-        createdAt: String
-        userId: [User]
-        thoughtId: [Thought]
-        commentId: [Comment]
-    }
-
+      
     type Topic {
         _id: ID!
         topicBody: String
@@ -65,8 +56,7 @@ const typeDefs = `
         updateUser(firstname: String!, lastname: String!, username: String!, email: String!, password: String!): User
         addThought(thoughtText: String!, media: String, userId: ID!, topicId: ID!): Thought
         updateThought(thoughtText: String!): Thought
-        addComment(commentText: String!): Comment
-        addReaction(reactionBody: String!): Reaction
+        addComment(commentText: String!, userId: ID!, thoughtId: ID!): Comment
         removeThought(thoughtId: ID!): Thought
         removeComment(commentId: ID!): Comment
     }

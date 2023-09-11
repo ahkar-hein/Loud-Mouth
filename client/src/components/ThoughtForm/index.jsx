@@ -12,9 +12,7 @@ const ThoughtForm = () => {
   const [thoughtText, setThoughtText] = useState('');
   const [topicId, setTopicId] = useState('');
   const [image, setImage] = useState(null);
-  console.log(image)
   const [characterCount, setCharacterCount] = useState(0);
-  console.log(topicId);
   const [addThought, { error }] = useMutation(ADD_THOUGHT, {
     refetchQueries: [QUERY_THOUGHTS, QUERY_ME],
   });
