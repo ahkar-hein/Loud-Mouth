@@ -14,6 +14,10 @@ const thoughtSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  media: {
+    type: String,
+    trim: true
+  },
   user: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -25,14 +29,6 @@ const thoughtSchema = new Schema({
       ref: 'Comment'
     }
   ],
-
-  // reactionBody: [
-  //   {
-  //     type: String,
-  //     required: true,
-  //     ref: 'Reaction'
-  //   }
-  // ],
 
   topics: {
     type: Schema.Types.ObjectId,

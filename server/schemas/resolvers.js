@@ -68,7 +68,7 @@ const resolvers = {
         { new: true }
       );
     },
-    addThought: async (parent, { thoughtText, userId, topicId }) => {
+    addThought: async (parent, { thoughtText, media, userId, topicId }) => {
       try {
         if (!userId) {
           throw new Error('You need to be logged in!');
@@ -79,6 +79,7 @@ const resolvers = {
     
         const thought = await Thought.create({
           thoughtText,
+          media: media,
           user: userId, 
           topics: topicId, 
         });

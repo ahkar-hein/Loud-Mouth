@@ -39,6 +39,8 @@ const SingleThought = () => {
             lineHeight: '1.5',
           }}
         >
+          <img src={thought.media} alt="" srcset="" />
+          <br />
           {thought.thoughtText}
         </blockquote>
       </div>
