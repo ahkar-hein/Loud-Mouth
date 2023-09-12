@@ -8,12 +8,15 @@
     --darkBrown: #654321;
     --grey: #808080;
     --manatee: #979aaa;
+    --fawn: #e5aa70;
+    --fallow: #c19a6b;
 }
 
 body {
     background-color: var(--grey);
 }
 
+/* homepage */
 main {
     background-color: var(--cosmiclatte);
 }
@@ -33,3 +36,43 @@ main {
     font-size: 28px;
 }
 
+/* thoughtForm */
+#thought-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#char-count {
+    border: 5px solid var(--champBrown);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    max-width: 200px;
+    border-radius: 10px;
+    background-color: var(--fallow);
+    color: var(--darkBrown);
+    box-shadow: 5px 5px 5px var(--darkBrown);
+}
+
+#thought-input {
+    border: 5px solid var(--champBrown);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    max-width: 200px;
+    border-radius: 10px;
+    background-color: var(--fallow);
+    color: var(--darkBrown);
+    box-shadow: 5px 5px 5px var(--darkBrown);
+}
+
+#thought-input textarea {
+    border: 5px solid var(--champBrown);
+    border-radius: 10px;
+    background-color: var(--almond);
+}
+
+::placeholder {
+    color: var(--darkBrown);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    padding: 4px;
+    font-style: italic;
+}
