@@ -10,7 +10,7 @@ const resolvers = {
       return User.findOne({ username }).populate('thoughts');
     },
     thoughts: async () => {
-      return Thought.find().populate('user').populate('comments');
+      return Thought.find().populate('user').populate('comments').populate('topics');
     },
     thought: async (parent, { thoughtId }) => {
       return Thought.findOne({ _id: thoughtId }).populate('comments');

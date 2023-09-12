@@ -30,11 +30,13 @@ const thoughtSchema = new Schema({
     }
   ],
 
-  topics: {
-    type: Schema.Types.ObjectId,
-    ref: 'Topic',
-  },
-  
+  topics: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Topic',
+    },
+  ],
+
   reactions: [
     {
       user: {

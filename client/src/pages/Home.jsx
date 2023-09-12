@@ -4,7 +4,7 @@ import ThoughtList from '../components/ThoughtList';
 import ThoughtForm from '../components/ThoughtForm';
 
 import { QUERY_THOUGHTS } from '../utils/queries';
-import TopicList from '../components/TopicList';
+// import TopicList from '../components/TopicList';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
@@ -19,7 +19,7 @@ const Home = () => {
           style={{ border: '1px dotted #1a1a1a' }}
         >
           <ThoughtForm />
-          <TopicList />
+          {/* <TopicList /> */}
         </div>
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
