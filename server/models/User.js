@@ -32,6 +32,11 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
+    imageSrc: {
+        type: String,
+        unique: false,
+        required: false,
+    },
     thoughts: [
         {
             type: Schema.Types.ObjectId,
