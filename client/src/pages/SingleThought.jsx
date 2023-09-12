@@ -22,6 +22,7 @@ const SingleThought = () => {
     return <div>Loading...</div>;
   }
   return (
+    
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
       {thought.user && thought.user._id && (
@@ -74,6 +75,5 @@ const UsernameDisplay = ({ userId }) => {
   if (data.user && data.user.username) {
     return <p>{data.user.username}</p>;
   }
-
 };
 export default SingleThought;
