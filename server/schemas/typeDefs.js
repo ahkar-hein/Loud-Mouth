@@ -17,7 +17,7 @@ const typeDefs = `
         user: User
         comments: [Comment]
         reactions: [Reaction]
-        topics: Topic
+        topics: [Topic]
         commentCount: Int
         reactionCount: Int
     }
