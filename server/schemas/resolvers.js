@@ -118,6 +118,34 @@ const resolvers = {
           throw new Error('Failed to create a new comment');
         }
       },
+      addReaction: async (parent, { thoughtId, userId }, context) => {
+        try {
+          const thought = await Thought.findOne({ _id: thoughtId });
+      
+          if (!thought) {
+            throw new Error('Thought not found');
+          }
+      
+          const existingReaction = thought.reactions.find(
+            (reaction) => reaction.userId.toString() === userId
+          );
+      
+          if (existingReaction) {
+            throw new Error('User has already reacted to this thought');
+          }
+      
+          thought.reactions.push({
+            userId: userId,
+          });
+      
+          await thought.save();
+      
+          return thought;
+        } catch (error) {
+          throw new Error('Failed to add reaction: ' + error.message);
+        }
+      },
+      
     removeThought: async (parent, { thoughtId }, context) => {
       if (context.user) {
         const thought = await Thought.findOneAndDelete({
