@@ -26,14 +26,25 @@ query GET_USERNAME_BY_ID($userId: ID!) {
 `;
 
 export const QUERY_THOUGHTS = gql`
-query getThoughts {
+query Thoughts {
   thoughts {
     _id
     thoughtText
     media
-    user {
+    createdAt
+    comments {
       _id
-      username
+      commentText
+    }
+    reactions {
+      userId {
+        _id
+      }
+    }
+    reactionCount
+    topics {
+      _id
+      topicBody
     }
   }
 }

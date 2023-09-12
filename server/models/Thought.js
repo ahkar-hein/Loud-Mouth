@@ -30,20 +30,18 @@ const thoughtSchema = new Schema({
     }
   ],
 
-  topics: {
-    type: Schema.Types.ObjectId,
-    ref: 'Topic',
-  },
-  
+  topics: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Topic',
+    },
+  ],
+
   reactions: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-      },
-      count: {
-        type: Number,
-        default: 0, // Default reaction count is 0
       },
     },
   ],
@@ -52,6 +50,10 @@ const thoughtSchema = new Schema({
 
 thoughtSchema.virtual('commentCount').get(function () {
   return this.comments.length;
+})
+
+thoughtSchema.virtual('reactionCount').get(function () {
+  return this.reactions.length;
 })
 
 

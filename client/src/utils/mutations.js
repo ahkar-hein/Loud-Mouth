@@ -54,3 +54,32 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+mutation UpdateUser($username: String!, $email: String!, $password: String!, $imageSrc: String!, $userId: ID!) {
+  updateUser(username: $username, email: $email, password: $password, imageSrc: $imageSrc, userId: $userId) {
+    _id
+    email
+    firstname
+    imageSrc
+    lastname
+    password
+    username
+  }
+}
+`;
+
+export const ADD_REACTION = gql `
+mutation addReaction($thoughtId: ID!, $userId: ID!) {
+  addReaction(thoughtId: $thoughtId, userId: $userId) {
+    thoughtText
+    reactions {
+      _id
+      userId {
+        _id
+      }
+    }
+    reactionCount
+  }
+}
+`;

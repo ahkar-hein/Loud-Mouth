@@ -10,7 +10,7 @@ const resolvers = {
       return User.findOne({ username }).populate('thoughts');
     },
     thoughts: async () => {
-      return Thought.find().populate('user').populate('comments');
+      return Thought.find().populate('user').populate('comments').populate('topics');
     },
     thought: async (parent, { thoughtId }) => {
       return Thought.findOne({ _id: thoughtId }).populate('comments');
@@ -61,11 +61,11 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    updateUser: async (parent, { username, email, password }) => {
+    updateUser: async (parent, { userId, username, email, password, imageSrc }) => {
       return User.findOneAndUpdate(
-        { _id: context.user._id },
-        { username, email, password },
-        { new: true }
+        { _id: userId },
+        { username, email, password, imageSrc },
+        { new: true }//add imageSrc
       );
     },
     addThought: async (parent, { thoughtText, media, userId, topicId }) => {
@@ -118,6 +118,34 @@ const resolvers = {
           throw new Error('Failed to create a new comment');
         }
       },
+      addReaction: async (parent, { thoughtId, userId }, context) => {
+        try {
+          const thought = await Thought.findOne({ _id: thoughtId });
+      
+          if (!thought) {
+            throw new Error('Thought not found');
+          }
+      
+          const existingReaction = thought.reactions.find(
+            (reaction) => reaction.userId.toString() === userId
+          );
+      
+          if (existingReaction) {
+            throw new Error('User has already reacted to this thought');
+          }
+      
+          thought.reactions.push({
+            userId: userId,
+          });
+      
+          await thought.save();
+      
+          return thought;
+        } catch (error) {
+          throw new Error('Failed to add reaction: ' + error.message);
+        }
+      },
+      
     removeThought: async (parent, { thoughtId }, context) => {
       if (context.user) {
         const thought = await Thought.findOneAndDelete({
