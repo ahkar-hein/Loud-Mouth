@@ -54,3 +54,18 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_REACTION = gql `
+mutation addReaction($thoughtId: ID!, $userId: ID!) {
+  addReaction(thoughtId: $thoughtId, userId: $userId) {
+    thoughtText
+    reactions {
+      _id
+      userId {
+        _id
+      }
+    }
+    reactionCount
+  }
+}
+`;

@@ -31,6 +31,7 @@ query getThoughts {
     _id
     thoughtText
     media
+    reactionCount
     user {
       _id
       username

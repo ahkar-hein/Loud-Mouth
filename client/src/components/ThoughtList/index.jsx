@@ -24,7 +24,9 @@ const ThoughtList = ({
               <UsernameDisplay username={thought.user.username} />
             )}
           </div>
-          <ShutupButton thoughtId={thought._id} />
+          <ShutupButton thoughtId={thought._id} /> <br />
+          This thought reacted {thought.reactionCount} users.
+          <br />
           <Link
             className="btn btn-primary btn-block btn-squared"
             to={`/thoughts/${thought._id}`}
