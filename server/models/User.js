@@ -36,7 +36,7 @@ const userSchema = new Schema({
         type: String,
         unique: false,
         required: false,
-    }
+    },
     thoughts: [
         {
             type: Schema.Types.ObjectId,

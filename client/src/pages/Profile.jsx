@@ -10,6 +10,8 @@ import Divider from '@mui/material/Divider';
 import { styled } from '@mui/material/styles';
 
 import Auth from '../utils/auth';
+import { Box, TextField } from '@mui/material';
+import UpdateForm from '../components/UpdateForm';
 
 const Grid = styled(MuiGrid)(({ theme }) => ({
   width: '100%',
@@ -67,7 +69,9 @@ const Profile = () => {
           </Divider>
           <Grid item xs>
             <h2></h2>
-          <h3>Username: {user.username}</h3>
+          <h3>Update info</h3>
+
+          <UpdateForm />
 
           </Grid>
         </Grid>

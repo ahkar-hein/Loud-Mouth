@@ -61,11 +61,11 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    updateUser: async (parent, { username, email, password }) => {
+    updateUser: async (parent, { userId, username, email, password, imageSrc }) => {
       return User.findOneAndUpdate(
-        { _id: context.user._id },
-        { username, email, password },
-        { new: true }
+        { _id: userId },
+        { username, email, password, imageSrc },
+        { new: true }//add imageSrc
       );
     },
     addThought: async (parent, { thoughtText, media, userId, topicId }) => {
