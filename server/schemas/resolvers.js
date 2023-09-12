@@ -6,11 +6,11 @@ const resolvers = {
     users: async () => {
       return User.find().populate('thoughts');
     },
-    user: async (parent, { userId }) => {
-      return User.findOne({ _id: userId }).populate('thoughts');
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('thoughts');
     },
     thoughts: async () => {
-      return Thought.find().populate('comments');
+      return Thought.find().populate('user').populate('comments');
     },
     thought: async (parent, { thoughtId }) => {
       return Thought.findOne({ _id: thoughtId }).populate('comments');
@@ -83,13 +83,7 @@ const resolvers = {
           user: userId, 
           topics: topicId, 
         });
-
-        await User.findOneAndUpdate(
-          {_id: userId},
-          {$push: {thoughts: thought._id}},
-          {new: true}
-        )
-    
+        const user = await User.findOneAndUpdate({_id: userId}, {$addToSet: {thoughts: thought._id}}, {runValidators: true, new: true})
         console.log('Created thought:', thought);
         return thought;
       } catch (err) {

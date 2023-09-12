@@ -33,6 +33,7 @@ query getThoughts {
     media
     user {
       _id
+      username
     }
   }
 }
@@ -73,12 +74,13 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
+      firstname
+      lastname
       username
       email
       thoughts {
         _id
         thoughtText
-        thoughtAuthor
         createdAt
       }
     }
