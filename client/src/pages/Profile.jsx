@@ -54,7 +54,8 @@ const Profile = () => {
         <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
           Viewing {userParam ? `${user.username}'s` : 'your'} profile.
         </h2>
-
+            {Auth.getProfile().data.username === user.username ? (
+              <>
         <Grid container>
           <Grid item xs>
             <h2>{user.username}'s thoughts</h2>
@@ -68,13 +69,25 @@ const Profile = () => {
           <Divider orientation='vertical' flexItem>
           </Divider>
           <Grid item xs>
-            <h2></h2>
+              
           <h3>Update info</h3>
 
           <UpdateForm />
+          
 
           </Grid>
         </Grid>
+        </>):(
+          <>
+          <h2>{user.username}'s thoughts</h2>
+          <ThoughtList
+            thoughts={user.thoughts}
+            title={`${user.username}'s thoughts...`}
+            showTitle={false}
+            showUsername={false}
+          />
+          </>
+        )}
         <div className="col-6 col-md-10 mb-5">
           </div>
           {!userParam && (
