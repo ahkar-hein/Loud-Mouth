@@ -17,8 +17,15 @@ const typeDefs = `
         media: String
         user: User
         comments: [Comment]
-        topics: Topic
+        reactions: [Reaction]
+        topics: [Topic]
         commentCount: Int
+        reactionCount: Int
+    }
+
+    type Reaction {
+        _id: ID!
+        userId: User
     }
 
     type Comment {
@@ -58,6 +65,7 @@ const typeDefs = `
         addThought(thoughtText: String!, media: String, userId: ID!, topicId: ID!): Thought
         updateThought(thoughtText: String!): Thought
         addComment(commentText: String!, userId: ID!, thoughtId: ID!): Comment
+        addReaction(thoughtId: ID!, userId: ID!): Thought
         removeThought(thoughtId: ID!): Thought
         removeComment(commentId: ID!): Comment
     }
