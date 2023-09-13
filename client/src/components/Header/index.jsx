@@ -165,7 +165,7 @@ const NavBar = () => {
             </a>
         </div>
       </nav>
-      <div className="mobile-menu-icon">
+      {/* <div className="mobile-menu-icon">
         <button
           className="icon-button"
           aria-label="show more"
@@ -173,7 +173,7 @@ const NavBar = () => {
         >
           ☰
         </button>
-      </div>
+      </div> */}
     </header>
   );
   
