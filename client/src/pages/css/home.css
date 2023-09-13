@@ -48,6 +48,26 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--almond);
+}
+
+#add-btn {
+  color: var(--darkBrown);
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 20px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 10px 10px 10px var(--darkBrown);
+  background-color: var(--fawn);
+  border: solid 5px var(--champBrown);
+  border-radius: 10px;
+}
+
+#add-btn:hover {
+  cursor: pointer;
+  background-color: var(--fallow);
+  font-weight: bold;
 }
 
 #char-count {
@@ -257,6 +277,7 @@ main {
   box-shadow: 10px 10px 10px var(--darkBrown);
   background-color: var(--darkRed);
   border: solid 5px var(--champBrown);
+  border-radius: 10px;
 }
 
 .shutup-button:hover {
@@ -275,3 +296,5 @@ main {
   background-color: var(--fawn);
   border: solid 5px var(--champBrown);
 }
+
+/* profile */
