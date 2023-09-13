@@ -146,20 +146,27 @@ const resolvers = {
         }
       },
       
-    removeThought: async (parent, { thoughtId }, context) => {
-      if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
-        });
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
-        );
-        return thought;
-      }
-      throw AuthenticationError;
-    },
+      removeThought: async (parent, { thoughtId }, context) => {
+        // const { user } = context; 
+  
+        try {
+          const thought = await Thought.findById(thoughtId);
+  
+          if (!thought) {
+            throw new Error('Thought not found');
+          }
+  
+          // if (thought.userId.toString() !== user.id) {
+          //   throw new AuthenticationError('You are not authorized to remove this thought');
+          // }
+  
+          await thought.deleteOne();
+  
+          return thought; 
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      },
     removeComment: async (parent, { thoughtId, commentId }, context) => {
       if (context.user) {
         return Thought.findOneAndUpdate(

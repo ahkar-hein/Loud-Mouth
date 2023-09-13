@@ -63,7 +63,7 @@ const typeDefs = `
         login(email: String!, password: String!): Auth
         updateUser(userId: ID!, username: String!, email: String!, password: String!, imageSrc: String!): User
         addThought(thoughtText: String!, media: String, userId: ID!, topicId: ID!): Thought
-        updateThought(thoughtText: String!): Thought
+        updateThought(thoughtId: ID!, thoughtText: String!): Thought
         addComment(commentText: String!, userId: ID!, thoughtId: ID!): Comment
         addReaction(thoughtId: ID!, userId: ID!): Thought
         removeThought(thoughtId: ID!): Thought

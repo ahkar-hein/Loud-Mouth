@@ -12,6 +12,7 @@ export const QUERY_USER = gql`
         _id
         thoughtText
         createdAt
+        media
       }
     }
   }
@@ -93,6 +94,7 @@ export const QUERY_ME = gql`
         _id
         thoughtText
         createdAt
+        media
       }
     }
   }
