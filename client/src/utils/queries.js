@@ -33,16 +33,19 @@ query Thoughts {
     thoughtText
     media
     createdAt
+    reactionCount
     comments {
       _id
       commentText
+      createdAt
+    }
+    user {
+      _id
+      username
     }
     reactions {
-      userId {
-        _id
-      }
+      _id
     }
-    reactionCount
     topics {
       _id
       topicBody
