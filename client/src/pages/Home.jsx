@@ -5,7 +5,7 @@ import ThoughtForm from '../components/ThoughtForm';
 
 import { QUERY_THOUGHTS } from '../utils/queries';
 
-import TopicList from '../components/TopicList';
+// import TopicList from '../components/TopicList';
 import './css/home.css';
 // import TopicList from '../components/TopicList';
 
