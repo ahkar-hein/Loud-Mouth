@@ -1,0 +1,22 @@
+:root {
+    --brownRed: #98777b;
+    --almond: #ffebcd;
+    --champBrown: #a0785a;
+    --darkRed: #8b0000;
+    --cosmiclatte: #fff8e7;
+    --chestnut: #986960;
+    --darkBrown: #654321;
+    --grey: #808080;
+    --manatee: #979aaa;
+    --fawn: #e5aa70;
+    --fallow: #c19a6b;
+  }
+
+#prof-title {
+    font-size: 24px;
+    color: var(--darkBrown);
+}
+
+#root {
+    background-color: var(--almond);
+}
