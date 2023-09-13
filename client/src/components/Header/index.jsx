@@ -152,16 +152,17 @@ const NavBar = () => {
           >
             📬
           </button>
+          <a href="/me">
           <button
             className="icon-button profile-button"
             aria-label="account of current user"
             onClick={handleProfileMenuOpen}
-            ><a href="/me">
+            >
             <span role="img" aria-label="user icon">
               👤
             </span>
-            </a>
           </button>
+            </a>
         </div>
       </nav>
       <div className="mobile-menu-icon">
