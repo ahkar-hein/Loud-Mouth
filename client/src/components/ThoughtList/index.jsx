@@ -25,8 +25,8 @@ const ThoughtList = ({
   };
 
   return (
-    <div>
-      {showTitle && <h3>{title}</h3>}
+    <div className='Thought-list-container'>
+      {showTitle && <h3 className='topic-title'>{title}</h3>}
 
       {/* Render the TopicFilter component */}
       {!topicsLoading && (
@@ -37,11 +37,11 @@ const ThoughtList = ({
         />
       )}
        {selectedTopic && (
-      <p>{topicsData.topics.find(topic => topic._id === selectedTopic)?.topicBody}</p>
+      <p className='topics'>{topicsData.topics.find(topic => topic._id === selectedTopic)?.topicBody}</p>
   )}
       {filteredThoughts.map((thought) => (
-        <div key={thought._id} className="card mb-3">
-          <div className="card-body bg-light p-2">
+        <div id='thought-container' key={thought._id} className="card mb-3">
+          <div id='thought-card' className="card-body bg-light p-2">
             <img src={thought.media} alt="" />
             <p>{thought.thoughtText}</p>
             {showUsername && thought.user && thought.user._id && (
