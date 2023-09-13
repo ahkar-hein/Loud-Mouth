@@ -9,17 +9,23 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('thoughts');
     },
+    userComment: async (parent, { userId }) => {
+      return Comment.findOne({ userId }).populate('userId')
+    },
     thoughts: async () => {
-      return Thought.find().populate('user').populate('comments').populate('topics');
+      return Thought.find().populate('user').populate('comments').populate('topic');
     },
     thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId }).populate('comments');
+      return Thought.findOne({ _id: thoughtId }).populate('comments').populate('user');
     },
     comments: async () => {
       return Comment.find();
     },
     topics: async () => {
       return Topic.find();
+    },
+    topic: async (parent, { topicId }) => {
+      return Thought.find( {topic: topicId} );
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -81,7 +87,7 @@ const resolvers = {
           thoughtText,
           media: media,
           user: userId, 
-          topics: topicId, 
+          topic: topicId, 
         });
         const user = await User.findOneAndUpdate({_id: userId}, {$addToSet: {thoughts: thought._id}}, {runValidators: true, new: true})
         console.log('Created thought:', thought);
@@ -120,23 +126,24 @@ const resolvers = {
       },
       addReaction: async (parent, { thoughtId, userId }, context) => {
         try {
-          const thought = await Thought.findOne({ _id: thoughtId });
+          const thought = await Thought.findOneAndUpdate({_id: thoughtId},{$addToSet: {reactions: userId}});
+          // const thought = await Thought.findOne({ _id: thoughtId });
       
           if (!thought) {
             throw new Error('Thought not found');
           }
       
-          const existingReaction = thought.reactions.find(
-            (reaction) => reaction.userId.toString() === userId
-          );
+          // const existingReaction = thought.reactions.find(
+          //   (reaction) => reaction.userId.toString() === userId
+          // );
       
-          if (existingReaction) {
-            throw new Error('User has already reacted to this thought');
-          }
+          // if (existingReaction) {
+          //   throw new Error('User has already reacted to this thought');
+          // }
       
-          thought.reactions.push({
-            userId: userId,
-          });
+          // thought.reactions.add({
+          //   userId: userId,
+          // });
       
           await thought.save();
       

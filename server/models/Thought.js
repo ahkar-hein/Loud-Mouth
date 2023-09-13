@@ -18,11 +18,13 @@ const thoughtSchema = new Schema({
     type: String,
     trim: true
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: 'User'
-  },
+  user: 
+    {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'User'
+    },
+
   comments: [
     {
       type: Schema.Types.ObjectId,
@@ -30,19 +32,19 @@ const thoughtSchema = new Schema({
     }
   ],
 
-  topics: [
+  topic: 
     {
       type: Schema.Types.ObjectId,
       ref: 'Topic',
     },
-  ],
+
 
   reactions: [
     {
-      user: {
+     
         type: Schema.Types.ObjectId,
         ref: 'User',
-      },
+      
     },
   ],
 

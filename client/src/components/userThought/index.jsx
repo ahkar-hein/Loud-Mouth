@@ -74,7 +74,7 @@ const UserThoughts = ({ username }) => {
               cols="30"
               rows="10"
               defaultValue={thought.thoughtText} 
-              value={updatedThoughtText}
+              // value={updatedThoughtText}
               disabled={!isEditing}
               onChange={(e) => setUpdatedThoughtText(e.target.value)}
             />

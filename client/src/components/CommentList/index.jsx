@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { GET_USERNAME_BY_ID } from '../../utils/queries';
 
-const CommentList = ({ comments = [] }) => {
+const CommentList = ({ comments = [], userId }) => {
   if (!comments.length) {
     return <h3>No Comments Yet</h3>;
   }
@@ -23,7 +23,7 @@ const CommentList = ({ comments = [] }) => {
                 <span style={{ fontSize: '0.825rem' }}>
                   {' '}
                   on {comment.createdAt} by{' '}
-                  <UsernameDisplay userId={comment.userId[3]._id} />
+                  <UsernameDisplay userId={userId} />
                 </span>
               </h5>
               <p className="card-body">{comment.commentText}</p>
@@ -37,7 +37,7 @@ const CommentList = ({ comments = [] }) => {
 
 const UsernameDisplay = ({ userId }) => {
   const { loading, error, data } = useQuery(GET_USERNAME_BY_ID, {
-    variables: { userId },
+    variables: { userId: userId },
   });
 
   if (loading) {
@@ -49,7 +49,7 @@ const UsernameDisplay = ({ userId }) => {
     return <p>Error fetching username.</p>;
   }
 
-  return <span>{data.user.username}</span>;
+  return <span>{data.userComment.userId.username}</span>;
 };
 
 export default CommentList;

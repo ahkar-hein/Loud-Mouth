@@ -8,6 +8,7 @@ const typeDefs = `
         password: String!
         imageSrc: String
         thoughts: [Thought]
+        
     }
 
     type Thought {
@@ -18,7 +19,7 @@ const typeDefs = `
         user: User
         comments: [Comment]
         reactions: [Reaction]
-        topics: [Topic]
+        topic: Topic
         commentCount: Int
         reactionCount: Int
     }
@@ -32,14 +33,13 @@ const typeDefs = `
         _id: ID!
         commentText: String
         createdAt: String
-        userId: [User]!
+        userId: User
         thoughtId: [Thought]!
     }
       
     type Topic {
         _id: ID!
         topicBody: String
-        thought: [Thought]
     }
 
     type Auth {
@@ -50,12 +50,13 @@ const typeDefs = `
     type Query {
         users: [User]!
         user(username: String!): User
+        userComment(userId: ID!): Comment
         me: User 
         thoughts: [Thought]
         thought(thoughtId: ID!): Thought
         comments: [Comment]
         topics: [Topic]
-        topic(topicId: ID!): Topic
+        topic(topicId: ID!): [Thought]
     }
 
     type Mutation {

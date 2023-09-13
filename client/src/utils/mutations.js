@@ -33,7 +33,7 @@ export const ADD_THOUGHT = gql`
       user {
         _id
       }
-      topics {
+      topic {
         _id
       }
     }

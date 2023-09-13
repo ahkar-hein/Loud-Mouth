@@ -14,12 +14,12 @@ const commentSchema = new Schema({
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),
     },
-    userId: [
+    userId: 
         {
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }
-    ],
+        },
+    
     thoughtId: [
         {
             type: Schema.Types.ObjectId,

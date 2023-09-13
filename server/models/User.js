@@ -43,6 +43,7 @@ const userSchema = new Schema({
             ref: 'Thought'
         }
     ]
+  
 })
 
 const User = model('User', userSchema);

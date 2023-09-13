@@ -13,10 +13,10 @@ const ThoughtList = ({
 }) => {
   const [selectedTopic, setSelectedTopic] = useState('');
   const { loading: topicsLoading, data: topicsData } = useQuery(QUERY_TOPICS);
-
+  console.log(thoughts)
   const filteredThoughts = selectedTopic
   ? thoughts.filter((thought) =>
-      thought.topics.some((topic) => topic._id === selectedTopic)
+      thought.topic === selectedTopic
     )
   : thoughts;
 
@@ -25,8 +25,8 @@ const ThoughtList = ({
   };
 
   return (
-    <div>
-      {showTitle && <h3>{title}</h3>}
+    <div className='Thought-list-container'>
+      {showTitle && <h3 className='topic-title'>{title}</h3>}
 
       {/* Render the TopicFilter component */}
       {!topicsLoading && (
@@ -37,16 +37,14 @@ const ThoughtList = ({
         />
       )}
        {selectedTopic && (
-      <p>{topicsData.topics.find(topic => topic._id === selectedTopic)?.topicBody}</p>
+      <p className='topics'>{topicsData.topics.find(topic => topic._id === selectedTopic)?.topicBody}</p>
   )}
       {filteredThoughts.map((thought) => (
-        <div key={thought._id} className="card mb-3">
-          <div className="card-body bg-light p-2">
+        <div id='thought-container' key={thought._id} className="card mb-3">
+          <div id='thought-card' className="card-body bg-light p-2">
             <img src={thought.media} alt="" />
             <p>{thought.thoughtText}</p>
-            {showUsername && thought.user && thought.user._id && (
-              <UsernameDisplay username={thought.user.username} />
-            )}
+            <p>This Thought Created By {thought.user.username}</p>
           </div>
           <ShutupButton thoughtId={thought._id} /> <br />
           <p>This thought reacted {thought.reactionCount} users.</p>
@@ -62,10 +60,10 @@ const ThoughtList = ({
   );
 };
 
-const UsernameDisplay = ({ username }) => {
-  if (username) {
-    return <p>This thought created by {username}</p>;
-  }
-};
+// const UsernameDisplay = ({ username }) => {
+//   if (username) {
+//     return <p>This thought created by {username}</p>;
+//   }
+// };
 
 export default ThoughtList;

@@ -10,9 +10,16 @@ import './css/home.css';
 // import TopicList from '../components/TopicList';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, data, error } = useQuery(QUERY_THOUGHTS);
+  if (error) {
+    console.log(error)
+  }
   const thoughts = data?.thoughts || [];
   const users = data?.users || [];
+
+  if (!loading) {
+    console.log(data)
+  }
 
   return (
     <main>

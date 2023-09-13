@@ -19,9 +19,13 @@ export const QUERY_USER = gql`
 `;
 
 export const GET_USERNAME_BY_ID = gql`
-query GET_USERNAME_BY_ID($userId: ID!) {
-  user(userId: $userId) {
-    username
+
+query UserComment($userId: ID!) {
+  userComment(userId: $userId) {
+    commentText
+    userId {
+      username
+    }
   }
 }
 `;
@@ -29,26 +33,23 @@ query GET_USERNAME_BY_ID($userId: ID!) {
 export const QUERY_THOUGHTS = gql`
 query Thoughts {
   thoughts {
-    _id
     thoughtText
-    media
-    createdAt
-    reactionCount
-    comments {
+    topic {
       _id
-      commentText
-      createdAt
+      topicBody
     }
+    comments {
+      commentText
+      _id
+      userId {
+        _id
+        username
+      }
+    }
+    media
     user {
       _id
       username
-    }
-    reactions {
-      _id
-    }
-    topics {
-      _id
-      topicBody
     }
   }
 }
@@ -72,6 +73,7 @@ export const QUERY_SINGLE_THOUGHT = gql`
       createdAt
       user {
         _id
+        username
       }
       comments {
         _id
