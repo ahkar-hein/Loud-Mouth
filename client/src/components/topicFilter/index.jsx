@@ -2,7 +2,7 @@ import React from 'react';
 
 const TopicFilter = ({ topics, selectedTopic, onChange }) => {
   return (
-    <div>
+    <div className='topicFilterContainer'>
       <h3>Filter by Topic</h3>
       <div className="topic-buttons">
         <button
