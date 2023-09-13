@@ -60,7 +60,9 @@ const NavBar = () => {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
+  // const goToProfile = (event) => {
+  //   event.window.replace('/me')
+  // }
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -146,6 +148,7 @@ const NavBar = () => {
           <button
             className="icon-button mail-button"
             aria-label="show 4 new mails"
+            
           >
             📬
           </button>
@@ -153,10 +156,11 @@ const NavBar = () => {
             className="icon-button profile-button"
             aria-label="account of current user"
             onClick={handleProfileMenuOpen}
-          >
+            ><a href="/me">
             <span role="img" aria-label="user icon">
               👤
             </span>
+            </a>
           </button>
         </div>
       </nav>
