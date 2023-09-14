@@ -114,14 +114,11 @@ const NavBar = () => {
     <header className="app-bar">
       <nav className="toolbar">
         <div className="menu-icon">
-          {/* <button
-            className="icon-button"
-            aria-label="open drawer"
-          >
-            ☰
-          </button> */}
+          <a href="/">
+            <img src="../../images/loudmouth.png" alt="logo" style={{ width: '200px', marginRight: '0px' }} />
+          </a>
         </div>
-        <h1 className='siteName'>LoudMouth</h1>
+        <h1 className='siteName' style={{ marginLeft: '0px' }}>LoudMouth</h1>
         <div className="actions">
           {Auth.loggedIn() ? (
             <LogoutButton />
