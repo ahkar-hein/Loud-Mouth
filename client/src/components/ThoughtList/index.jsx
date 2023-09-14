@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { GET_USERNAME_BY_ID, QUERY_TOPICS } from '../../utils/queries';
-import ShutupButton from '../ShutupButton';
-import TopicFilter from '../topicFilter';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { GET_USERNAME_BY_ID, QUERY_TOPICS } from "../../utils/queries";
+import ShutupButton from "../ShutupButton";
+import TopicFilter from "../topicFilter";
 
 const ThoughtList = ({
   thoughts,
@@ -11,12 +11,12 @@ const ThoughtList = ({
   showTitle = true,
   showUsername = true,
 }) => {
-  const [selectedTopic, setSelectedTopic] = useState('');
+  const [selectedTopic, setSelectedTopic] = useState("");
   const { loading: topicsLoading, data: topicsData } = useQuery(QUERY_TOPICS);
-  console.log(thoughts)
+  console.log(thoughts);
   const filteredThoughts = selectedTopic
   ? thoughts.filter((thought) =>
-      thought.topic === selectedTopic
+      thought.topic._id === selectedTopic
     )
   : thoughts;
 
@@ -25,8 +25,8 @@ const ThoughtList = ({
   };
 
   return (
-    <div className='Thought-list-container'>
-      {showTitle && <h3 className='topic-title'>{title}</h3>}
+    <div className="Thought-list-container">
+      {showTitle && <h3 className="topic-title">{title}</h3>}
 
       {/* Render the TopicFilter component */}
       {!topicsLoading && (
@@ -36,12 +36,17 @@ const ThoughtList = ({
           onChange={handleTopicChange}
         />
       )}
-       {selectedTopic && (
-      <p className='topics'>{topicsData.topics.find(topic => topic._id === selectedTopic)?.topicBody}</p>
-  )}
+      {selectedTopic && (
+        <p className="topics">
+          {
+            topicsData.topics.find((topic) => topic._id === selectedTopic)
+              ?.topicBody
+          }
+        </p>
+      )}
       {filteredThoughts.map((thought) => (
-        <div id='thought-container' key={thought._id} className="card mb-3">
-          <div id='thought-card' className="card-body bg-light p-2">
+        <div id="thought-container" key={thought._id} className="card mb-3">
+          <div id="thought-card" className="card-body bg-light p-2">
             <img src={thought.media} alt="" />
             <p>{thought.thoughtText}</p>
             <p>This Thought Created By {thought.user.username}</p>
@@ -59,11 +64,5 @@ const ThoughtList = ({
     </div>
   );
 };
-
-// const UsernameDisplay = ({ username }) => {
-//   if (username) {
-//     return <p>This thought created by {username}</p>;
-//   }
-// };
 
 export default ThoughtList;
