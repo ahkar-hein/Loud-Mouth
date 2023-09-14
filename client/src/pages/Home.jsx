@@ -5,9 +5,9 @@ import ThoughtForm from '../components/ThoughtForm';
 
 import { QUERY_THOUGHTS } from '../utils/queries';
 
-import TopicList from '../components/TopicList';
+
 import './css/home.css';
-// import TopicList from '../components/TopicList';
+
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
