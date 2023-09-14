@@ -1,12 +1,12 @@
 
 # Loud-Mouth
-
+![screenshot](/client/public/images/loudmouth.png)
 ## Table of Contents:
 1. [Description](#description)
 2. [Installation](#installation)
 3. [Usage](#usage)
-4. [Contributions](#contributions)
-5. [Testing](#testing)
+4. [Screenshots](#screenshots)
+5. [Contributions](#contributions)
 6. [License](#license)
 7. [Technologies Used](#technology)
 8. [Authors](#authors)
@@ -24,11 +24,19 @@ A social media app that allows users to express opinions on various topics, inte
 ## Usage
 Visit the site, create an account or log in, start posting and commenting. 
 
+## Screenshots
+Home screen
+![homescreen](/client/public/images/homescreen.png)
+
+Login screen
+![login](/client/public/images/login.png)
+
+Profile screen
+![profile](/client/public/images/profile.png)
 ## Contributions
 Contact one of the authors.
 
-## Testing
-demo
+
 
 ## License
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
