@@ -63,7 +63,7 @@ const UserThoughts = ({ username }) => {
   };
 
   return (
-    <div>gi
+    <div>
       {user.thoughts.map((thought) => (
         <div key={thought._id} className="card mb-3">
           <div className="card-body bg-light p-2">
@@ -74,7 +74,7 @@ const UserThoughts = ({ username }) => {
               cols="30"
               rows="10"
               defaultValue={thought.thoughtText} 
-              value={updatedThoughtText}
+              // value={updatedThoughtText}
               disabled={!isEditing}
               onChange={(e) => setUpdatedThoughtText(e.target.value)}
             />

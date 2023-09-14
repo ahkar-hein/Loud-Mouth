@@ -15,6 +15,7 @@ import { Box, TextField } from '@mui/material';
 import UpdateForm from '../components/UpdateForm';
 import '../pages/css/profile.css'
 
+
 const Grid = styled(MuiGrid)(({ theme }) => ({
   width: '100%',
   ...theme.typography.body2,
@@ -62,12 +63,13 @@ const Profile = () => {
           <Grid item xs>
             <h2>{user.username}'s thoughts</h2>
           {/* <ThoughtList
+          {/* <ThoughtList
             thoughts={user.thoughts}
             title={`${user.username}'s thoughts...`}
             showTitle={false}
             showUsername={false}
           /> */}
-          <UserThoughts
+           <UserThoughts
           username={user.username}
           />
 

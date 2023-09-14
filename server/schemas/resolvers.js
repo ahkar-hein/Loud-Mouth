@@ -9,14 +9,17 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('thoughts');
     },
+    userComment: async (parent, {userId}) => {
+      return User.findOne({_id: userId})
+    },
     thoughts: async () => {
       return Thought.find().populate('user').populate('comments').populate('topics');
     },
     thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId }).populate('comments');
+      return Thought.findOne({ _id: thoughtId }).populate('comments').populate('user');
     },
     comments: async () => {
-      return Comment.find();
+      return Comment.find()
     },
     topics: async () => {
       return Topic.find();
