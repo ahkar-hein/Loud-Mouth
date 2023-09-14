@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 import ThoughtList from '../components/ThoughtList';
@@ -16,6 +17,11 @@ const Home = () => {
   }
   const thoughts = data?.thoughts || [];
   const users = data?.users || [];
+  const [selectedTopic, setSelectedTopic] = useState('');
+
+  const handleTopicChange = (topicId) => {
+    setSelectedTopic(topicId);
+  };
 
   if (!loading) {
     console.log(data)
