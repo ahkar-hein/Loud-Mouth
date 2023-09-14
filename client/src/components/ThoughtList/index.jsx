@@ -44,9 +44,7 @@ const ThoughtList = ({
           <div id='thought-card' className="card-body bg-light p-2">
             <img src={thought.media} alt="" />
             <p>{thought.thoughtText}</p>
-            {showUsername && thought.user && thought.user._id && (
-              <UsernameDisplay username={thought.user.username} />
-            )}
+            <p>This Thought Created by {thought.user.username}</p>
           </div>
           <ShutupButton thoughtId={thought._id} /> <br />
           <p>This thought reacted {thought.reactionCount} users.</p>
@@ -60,12 +58,6 @@ const ThoughtList = ({
       ))}
     </div>
   );
-};
-
-const UsernameDisplay = ({ username }) => {
-  if (username) {
-    return <p>This thought created by {username}</p>;
-  }
 };
 
 export default ThoughtList;
