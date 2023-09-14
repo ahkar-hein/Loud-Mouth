@@ -13,6 +13,7 @@ import Auth from '../utils/auth';
 import { Box, TextField } from '@mui/material';
 import UpdateForm from '../components/UpdateForm';
 import '../pages/css/profile.css'
+import UserThoughts from '../components/userThought';
 
 const Grid = styled(MuiGrid)(({ theme }) => ({
   width: '100%',
@@ -60,11 +61,14 @@ const Profile = () => {
         <Grid container>
           <Grid item xs>
             <h2>{user.username}'s thoughts</h2>
-          <ThoughtList
+          {/* <ThoughtList
             thoughts={user.thoughts}
             title={`${user.username}'s thoughts...`}
             showTitle={false}
             showUsername={false}
+          /> */}
+           <UserThoughts
+          username={user.username}
           />
           </Grid>
           <Divider orientation='vertical' flexItem>

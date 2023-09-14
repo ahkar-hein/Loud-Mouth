@@ -83,3 +83,19 @@ mutation addReaction($thoughtId: ID!, $userId: ID!) {
   }
 }
 `;
+
+export const UPDATE_THOUGHT = gql `
+mutation updateThought($thoughtId: ID!, $thoughtText: String!) {
+  updateThought(thoughtId: $thoughtId, thoughtText: $thoughtText) {
+    thoughtText
+  }
+}
+`;
+
+export const DELETE_THOUGHT = gql `
+mutation removeThought($thoughtId: ID!) {
+  removeThought(thoughtId: $thoughtId) {
+    thoughtText
+  }
+}
+`;
