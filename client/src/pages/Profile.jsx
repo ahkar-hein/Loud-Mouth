@@ -14,7 +14,7 @@ import Auth from '../utils/auth';
 import { Box, TextField } from '@mui/material';
 import UpdateForm from '../components/UpdateForm';
 import '../pages/css/profile.css'
-import UserThoughts from '../components/userThought';
+
 
 const Grid = styled(MuiGrid)(({ theme }) => ({
   width: '100%',
