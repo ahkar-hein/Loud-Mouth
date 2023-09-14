@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 
 import ThoughtForm from '../components/ThoughtForm';
 import ThoughtList from '../components/ThoughtList';
+import UserThoughts from '../components/userThought';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import MuiGrid from '@mui/material/Grid';
@@ -62,6 +63,7 @@ const Profile = () => {
           <Grid item xs>
             <h2>{user.username}'s thoughts</h2>
           {/* <ThoughtList
+          {/* <ThoughtList
             thoughts={user.thoughts}
             title={`${user.username}'s thoughts...`}
             showTitle={false}
@@ -70,6 +72,7 @@ const Profile = () => {
            <UserThoughts
           username={user.username}
           />
+
           </Grid>
           <Divider orientation='vertical' flexItem>
           </Divider>
